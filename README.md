@@ -1,93 +1,119 @@
-# canoAlarconEduardo_pruebatec2
-Turnero: Sistema de gestión de citas
-Descripción del proyecto
-Este proyecto es una aplicación web de gestión de turnos/citas desarrollada en Java, utilizando Servlets, JSP, JPA y MySQL, diseñada para una entidad gubernamental para gestionar turnos ciudadanos.
-Características principales
+# Prueba Técnica 2 - Desarrollo de una Aplicación de Gestión de Turnos/Citas
 
-Gestión de turnos para diferentes trámites
-Asignación de turnos a ciudadanos
-Estados de turno: "En espera" y "Ya atendido"
-Filtrado de turnos por fecha y estado
-Sistema de autenticación de usuarios (Extra)
+## Descripción del Proyecto
 
-Requisitos previos
+El objetivo de esta aplicación es gestionar turnos o citas para una entidad gubernamental, donde los ciudadanos pueden sacar turnos para diferentes trámites. La aplicación permite la gestión de los turnos en base a su estado ("En espera" o "Ya atendido"), y está implementada utilizando Java, Servlets, JSP y JPA para el acceso a la base de datos.
 
-Java 7 o superior
-Experto
-MySQL
-Servidor de aplicaciones compatible con Servlets (Tomcat recomendado)
+## Requisitos Técnicos
 
-Configuración del proyecto
-Base de datos
+- **Backend:** Desarrollado en **Java EE 7 Web** con **Servlets** para la lógica de negocio.
+- **Frontend:** **JSP** para la interfaz de usuario. Utiliza plantillas y **Bootstrap** para el diseño, con **JavaScript Vanilla** para la interactividad.
+- **Base de Datos:** Utiliza **JPA (Java Persistence API)** para interactuar con una base de datos MySQL.
+- **Acciones CRUD:** Implementación de operaciones **Crear, Leer, Actualizar y Borrar** para gestionar los turnos.
+- **Colecciones y Funciones Lambda:** Se utilizan colecciones para gestionar datos en memoria y funciones lambda/streams como complemento de la programación funcional.
 
-Crear base de datos MySQL:
+## Funcionalidades de la Aplicación
 
-sqlCopiarCREATE DATABASE turnero_db;
-USE turnero_db;
+1. **Agregar un nuevo turno/cita:** Los usuarios pueden ingresar un nuevo turno, incluyendo número, fecha, descripción del trámite y asignación a un ciudadano. Un ciudadano puede tener múltiples turnos.
 
-Configurar credenciales en persistence.xml:
+2. **Listar turnos:** Los usuarios pueden visualizar todos los turnos con los ciudadanos asignados, en base a una fecha proporcionada.
 
-xmlCopiar<property name="javax.persistence.jdbc.user" value="tu_usuario"/>
-<property name="javax.persistence.jdbc.password" value="tu_contraseña"/>
-Dependencias
-El proyecto utiliza Maven. Las dependencias principales incluyen:
+3. **Filtrado de turnos:** Los usuarios pueden filtrar los turnos por su estado (En espera o Ya atendido).
 
-Conector MySQL
-JPA (Persistencia del eclipse)
-JSL (Lenguaje de señas japonés)
-API de servlets
+4. **Login de usuario:** Implementación de un login para acceder a la aplicación, donde el usuario debe iniciar sesión antes de interactuar con el sistema. 
+   - **Usuario:** `admin`
+   - **Contraseña:** `admin123`
 
-Instalación y ejecución
+5. **Acceso a PhpMyAdmin:** 
+   - **Usuario:** `admin`
+   - **Contraseña:** `123`
 
-Clonar el repositorio
+## Requisitos Técnicos
 
-intentoCopiargit clone https://github.com/[tu-usuario]/[nombre-repositorio].git
-cd [nombre-repositorio]
+- **Java Version:** 1.7
+- **Apache Tomcat Version:** 7.0 (Utilizado para desplegar la aplicación)
+- **JPA Version:** 2.7.10
+- **Maven Dependencies:** 
+  - JSTL
+  - MySQL Connector/J
+  - EclipseLink (JPA)
 
-Compilar el proyecto
+## Instalación y Ejecución
 
-intentoCopiarmvn clean install
+### 1. Clonar el Repositorio
 
-Desplegar en el servidor Tomcat
+```bash
+git clone https://github.com/<usuario>/<repositorio>.git
+```
 
+### 2. Configuración de la Base de Datos
 
-Copiar el WAR generado en target/el directorio webappsde Tomcat
+1. Asegúrate de tener **MySQL** instalado y en funcionamiento.
+2. Crea una base de datos para la aplicación:
+   ```sql
+   CREATE DATABASE turnos;
+   ```
+3. Configura el archivo `persistence.xml` para conectar tu aplicación a la base de datos MySQL.
 
-Funcionalidades
-Agregar turno
+### 3. Ejecutar la Aplicación
 
-Permite crear nuevos turnos
-Asignar un turno a un ciudadano específico
-Estado inicial: "En espera"
+1. Abre el proyecto con un IDE compatible con Maven (por ejemplo, IntelliJ IDEA o Eclipse).
+2. Usa Maven para compilar el proyecto:
+   ```bash
+   mvn clean install
+   ```
+3. Despliega el archivo WAR generado en **Apache Tomcat**.
 
-Listar turnos
+### 4. Acceder a la Aplicación
 
-Visualización de turnos por fecha
-Tabla detallada con información del turno y ciudadano
+- Inicia el servidor Apache Tomcat.
+- Accede a la aplicación a través del navegador:
+  ```url
+  http://localhost:8080/Prueba_Turnero
+  ```
 
-Filtrado de Turnos
+### 5. Iniciar sesión
 
-Filtro por estado: "En Espera" o "Ya Atendido"
+- **Usuario:** `admin`
+- **Contraseña:** `admin123`
 
-Consideraciones técnicas
+### 6. Acceder a PhpMyAdmin
 
-Desarrollado con servlets Java
-Frontend con JSP
-Persistencia de datos con JPA
-Uso de colecciones y streams
-Implementación de inicio de sesión (extra)
+- **URL:** `http://localhost/phpmyadmin`
+- **Usuario:** `admin`
+- **Contraseña:** `123`
 
-Supuestos y notas
+## Estructura del Proyecto
 
-Un ciudadano puede tener múltiples turnos.
-Los turnos son exclusivos por ciudadano
-Se permite modificar el estado del turno.
+- **src/main/java:** Contiene el código fuente de la aplicación (Servlets, lógica de negocio).
+- **src/main/webapp:** Contiene las vistas JSP y otros recursos estáticos (CSS, JS).
+- **src/main/resources:** Contiene archivos de configuración, como `persistence.xml`.
 
-Mejoras futuras
+## Supuestos
 
-Implementación de validaciones más robustas
-Mejora de la interfaz de usuario
-Optimización de consultas con streams
+1. **Base de Datos:** Se ha utilizado MySQL como motor de base de datos.
+2. **Autenticación:** El login es simple, con credenciales predefinidas.
+3. **Entidades:** Se ha supuesto que las entidades `Turno` y `Ciudadano` ya están definidas con sus respectivas relaciones en la base de datos.
 
-Contribuciones
-Las contribuciones son bienvenidas. Por favor, abre un problema o envía un pull request.
+## Extras
+
+- Se ha implementado un filtro para asegurar que los usuarios no puedan acceder a páginas sin haber iniciado sesión.
+- El código utiliza programación funcional con **streams y funciones lambda** para mejorar la eficiencia y optimización de las consultas.
+
+## Tecnologías Utilizadas
+
+- **Java EE 7 Web**
+- **JSP (JavaServer Pages)**
+- **JPA (Java Persistence API)**
+- **Servlets**
+- **MySQL**
+- **Bootstrap**
+- **JavaScript Vanilla**
+- **Apache Tomcat 7.0**
+
+---
+
+### ¡Disfruta de la aplicación!
+
+```
+
